@@ -1,6 +1,10 @@
 import React from 'react';
+import reallyAdorablePuppy from '../assets/images/puppy.jpeg';
 
 function NewTicketForm() {
+  var imgStyle = {
+    width: '600px',
+  }
   return (
     <div>
       <form>
@@ -17,6 +21,7 @@ function NewTicketForm() {
           placeholder='Describe your issue.' />
         <button type='submit'>Help!</button>
       </form>
+      <img style={imgStyle} src={reallyAdorablePuppy}/>
     </div>
   );
 }
