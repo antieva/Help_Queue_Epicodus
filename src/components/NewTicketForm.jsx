@@ -34,6 +34,18 @@ function NewTicketForm() {
     width: '250px'
   }
 
+  var button = {
+    transition: 'width .35s linear',
+    outline: 'none',
+    border: 'none',
+    borderRadius: '4px',
+    padding: '10px',
+    fontSize: '20px',
+    width: '65px',
+    backgroundColor: '#dddddd',
+    height: '45px',
+  }
+
   return (
     <div>
       <form>
@@ -52,7 +64,9 @@ function NewTicketForm() {
           style={textareaStyle}
           id ='issue'
           placeholder='Describe your issue.' />
-        <button type='submit'>Help!</button>
+        <button
+          style={button}
+          type='submit'>Help!</button>
       </form>
       <img style={imgStyle} src={reallyAdorablePuppy}/>
     </div>
