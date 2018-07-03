@@ -1,8 +1,10 @@
 import React from 'react';
 import Ticket from './Ticket';
+import PropTypes from 'prop-types';
 
 
 function TicketList(props) {
+  //alert(props.ticketList);
   return (
     <div>
       <hr/>
@@ -16,7 +18,7 @@ function TicketList(props) {
   );
 }
 
-TicketList.propTypes ={
+TicketList.propTypes = {
   ticketList: PropTypes.array
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import reallyAdorablePuppy from '../assets/images/puppy.jpeg';
+import PropTypes from 'prop-types';
 
 function NewTicketForm(props) {
   var imgStyle = {
@@ -52,7 +53,7 @@ function NewTicketForm(props) {
 
   function handleNewTicketFormSubmission(event) {
     event.preventDefault();
-    alert(_names.value + ' ' + _location.value +' ' + _issue.value);
+    props.onNewTicketCreation({names: _names.value, location: _location.value, issue: _issue.value});
     _names.value = '';
     _location.value = '';
     _issue.value = '';
