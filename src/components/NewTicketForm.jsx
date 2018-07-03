@@ -1,7 +1,7 @@
 import React from 'react';
 import reallyAdorablePuppy from '../assets/images/puppy.jpeg';
 
-function NewTicketForm() {
+function NewTicketForm(props) {
   var imgStyle = {
     width: '830px',
   }
@@ -46,24 +46,39 @@ function NewTicketForm() {
     height: '45px',
   }
 
+  let _names = null;
+  let _location = null;
+  let _issue = null;
+
+  function handleNewTicketFormSubmission(event) {
+    event.preventDefault();
+    alert(_names.value + ' ' + _location.value +' ' + _issue.value);
+    _names.value = '';
+    _location.value = '';
+    _issue.value = '';
+  }
+
   return (
     <div>
-      <form>
+      <form onSubmit={handleNewTicketFormSubmission}>
         <input
           style={inputStyle}
           type='text'
           id='names'
-          placeholder='Pair Names' />
+          placeholder='Pair Names'
+          ref={(input) => {_names = input;}} />
         <input
           className={focused}
           style={inputStyle}
           type='text'
           id='location'
-          placeholder='Location' />
+          placeholder='Location'
+          ref={(input) => {_location = input;}}/>
         <textarea
           style={textareaStyle}
           id ='issue'
-          placeholder='Describe your issue.' />
+          placeholder='Describe your issue.'
+          ref={(input) => {_issue = input;}}/>
         <button
           style={button}
           type='submit'>Help!</button>
@@ -72,5 +87,8 @@ function NewTicketForm() {
     </div>
   );
 }
+NewTicketForm.propTypes = {
+  onNewTicketCreation: PropTypes.func
+};
 
 export default NewTicketForm;
