@@ -4,6 +4,7 @@ import TicketList from './TicketList';
 import { Switch, Route } from 'react-router-dom';
 import NewTicketControl from './NewTicketControl';
 import Error404 from './Error404';
+import Admin from './Admin';
 import Moment from 'moment';
 
 class App extends React.Component {
@@ -49,12 +50,15 @@ class App extends React.Component {
           body {
             font-family: monospace;
             margin-left: 30px;
+            font-size: 16px;
           }
           h1 {
             text-align: center;
+            background-color: #ce4914;
+            height: 70px;
+            padding-top: 30px;
           }
           .issue {
-            border: 1px solid green;
             border-radius: 15px 50px;
             height: 30px;
             padding: 1%;
@@ -63,6 +67,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' render={()=><TicketList ticketList={this.state.masterTicketList} />} />
           <Route path='/newticket' render={() =><NewTicketControl onNewTicketCreation={this.handleAddingNewTicketToList} />} />
+          <Route path='/admin' render={(props)=><Admin ticketList={this.state.masterTicketList} currentRouterPath={props.location.pathname} />} />
           <Route component={Error404} />
         </Switch>
       </div>

@@ -3,30 +3,44 @@ import PropTypes from 'prop-types';
 
 
 function Ticket(props) {
-  return (
+
+  const ticketInformation =
     <div>
       <style global jsx>{`
-        h3 {
+        h3, h4 {
           margin-left: 40px;
         }
         .issue {
-          background-color: #ed6457;
-          width: 60%;
+          background-color: #dbd9d9;
+          height: 100px;
         }`
       }</style>
       <h3>{props.location} - {props.names}</h3>
       <h4>{props.formattedWaitTime}</h4>
       <p className='issue'><em>{props.issue}</em></p>
       <hr/>
+    </div>;
+  if (props.currentRouterPath === '/admin'){
+  return (
+    <div onClick={() => {alert('hey, you just clicked the ticket belonging to ' + props.names);}}>
+      {ticketInformation}
     </div>
   );
+  } else {
+    return (
+      <div>
+        {ticketInformation}
+      </div>
+    );
+  }
 }
 
 Ticket.propTypes = {
   names: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   issue: PropTypes.string,
-  formattedWaitTime: PropTypes.string.isRequired
+  formattedWaitTime: PropTypes.string.isRequired,
+  currentRouterPath: PropTypes.string
 };
 
 export default Ticket;
