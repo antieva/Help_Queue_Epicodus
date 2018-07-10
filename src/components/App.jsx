@@ -36,6 +36,7 @@ class App extends React.Component {
      newMasterTicketList[ticketId].formattedWaitTime = (newMasterTicketList[ticketId].timeOpen).fromNow(true);
    });
    this.setState({masterTicketList: newMasterTicketList});
+   console.log('I keep working');
  }
 
   handleAddingNewTicketToList(newTicket) {

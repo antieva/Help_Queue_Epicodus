@@ -8,7 +8,6 @@ function NewTicketForm(props) {
     width: '830px',
   }
   var inputStyle =  {
-  transition: 'width .35s linear',
   outline: 'none',
   border: 'none',
   borderRadius: '4px',
@@ -20,7 +19,6 @@ function NewTicketForm(props) {
   }
 
   var textareaStyle = {
-    transition: 'width .35s linear',
     outline: 'none',
     border: 'none',
     borderRadius: '4px',
