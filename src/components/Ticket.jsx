@@ -1,8 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 
 function Ticket(props) {
+
+  function handleSavingSelectedTicket(ticketId) {
+    const { dispatch } = props;
+    const action = {
+      type: 'SELECT_TICKET',
+      ticketId: ticketId
+    };
+    dispatch(action);
+  }
 
   const ticketInformation =
     <div>
@@ -21,7 +31,7 @@ function Ticket(props) {
     </div>;
   if (props.currentRouterPath === '/admin'){
   return (
-    <div onClick={() => {props.onTicketSelection(props.ticketId);}}>
+    <div onClick={() => {handleSavingSelectedTicket(props.ticketId);}}>
       {ticketInformation}
     </div>
   );
@@ -40,8 +50,7 @@ Ticket.propTypes = {
   issue: PropTypes.string,
   formattedWaitTime: PropTypes.string.isRequired,
   ticketId: PropTypes.string.isRequired,
-  currentRouterPath: PropTypes.string,
-  onTicketSelection: PropTypes.func
+  currentRouterPath: PropTypes.string
 };
 
-export default Ticket;
+export default connect()(Ticket);
