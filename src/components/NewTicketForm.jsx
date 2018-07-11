@@ -1,12 +1,14 @@
 import React from 'react';
 import reallyAdorablePuppy from '../assets/images/puppy.jpeg';
-import PropTypes from 'prop-types';
 import Moment from 'moment';
+import { connect } from 'react-redux';
+import { v4 } from 'uuid';
 
 function NewTicketForm(props) {
   var imgStyle = {
-    width: '830px',
-  }
+    width: '910px',
+  };
+
   var inputStyle =  {
   outline: 'none',
   border: 'none',
@@ -16,7 +18,7 @@ function NewTicketForm(props) {
   width: '200px',
   backgroundColor: '#dddddd',
   margin: '10px 10px 10px 0',
-  }
+  };
 
   var textareaStyle = {
     outline: 'none',
@@ -28,11 +30,11 @@ function NewTicketForm(props) {
     backgroundColor: '#dddddd',
     height: '25px',
     margin: '0 10px -15px 0',
-  }
+  };
 
   var focused = {
     width: '250px'
-  }
+  };
 
   var button = {
     transition: 'width .35s linear',
@@ -44,15 +46,24 @@ function NewTicketForm(props) {
     width: '65px',
     backgroundColor: '#dddddd',
     height: '45px',
-  }
+  };
 
   let _names = null;
   let _location = null;
   let _issue = null;
 
   function handleNewTicketFormSubmission(event) {
+    const { dispatch } = props;
     event.preventDefault();
-    props.onNewTicketCreation({names: _names.value, location: _location.value, issue: _issue.value, timeOpen: new Moment()});
+    const action = {
+      type: 'ADD_TICKET',
+      id: v4(),
+      names: _names.value,
+      location: _location.value,
+      issue: _issue.value,
+      timeOpen: new Moment()
+    };
+    dispatch(action);
     _names.value = '';
     _location.value = '';
     _issue.value = '';
@@ -87,8 +98,7 @@ function NewTicketForm(props) {
     </div>
   );
 }
-NewTicketForm.propTypes = {
-  onNewTicketCreation: PropTypes.func
-};
 
-export default NewTicketForm;
+//NewTicketForm = connect()(NewTicketForm);
+
+export default connect()(NewTicketForm);
