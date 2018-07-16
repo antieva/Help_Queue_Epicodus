@@ -3,6 +3,7 @@ import selectedTicketReducer from './../../src/reducers/selected-ticket-reducer'
 import rootReducer from './../../src/reducers/index';
 import { createStore } from 'redux';
 import Moment from 'moment';
+import c from './../constants';
 
 let store = createStore(rootReducer);
 
@@ -43,7 +44,7 @@ describe('ticketListReducer', () => {
   test('New ticket should include Moment-formatted wait times', () => {
   const { names, location, issue, timeOpen, id } = sampleTicketData;
   action = {
-    type: 'ADD_TICKET',
+    type: c.ADD_TICKET,
     names: names,
     location: location,
     issue: issue,
@@ -66,7 +67,7 @@ describe('ticketListReducer', () => {
   test('Should add freshly-calculated Moment-formatted wait time to ticket entry', () => {
    const { names, location, issue, timeOpen, id } = sampleTicketData;
    action = {
-     type: 'UPDATE_TIME',
+     type: c.UPDATE_TIME,
      formattedWaitTime: '4 minutes',
      id: id
    };
@@ -83,15 +84,5 @@ describe('ticketListReducer', () => {
  });
 
   });
-
-  describe("selectedTicketReducer", () => {
-
-  test('Should return default state if no action type is recognized', () => {
-    expect(selectedTicketReducer({}, { type: null })).toEqual({});
-  });
-
-  test('Should record which ticket has been selected by user', () => {
-   expect(selectedTicketReducer({}, { type: 'SELECT_TICKET', ticketId: 1 })).toEqual(1);
- });
 
 });
